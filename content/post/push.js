@@ -10,7 +10,7 @@ async function runGitCommand(command, errorMsg) {
     try {
     
         const { stdout } = await execPromise(command, { cwd: repoPath });
-        new Notice(`✅ ${command.split(' ')[0]} 成功`, 3000);
+        new Notice(`✅ ${command.split(' ')[1]} 成功`, 3000);
         return true;
     } catch (err) {
         new Notice(`❌ ${errorMsg}: ${err.message}`, 5000);
