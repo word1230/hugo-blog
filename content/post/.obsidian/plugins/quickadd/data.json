@@ -1,19 +1,27 @@
 {
-  "choices": [],
+  "choices": [
+    {
+      "id": "4da0bfe8-e5a4-4f52-9ea2-5d5c6b223687",
+      "name": "new blog",
+      "type": "Macro",
+      "command": false,
+      "macroId": "395e007b-08af-44dd-b5d4-82d630d452e5"
+    }
+  ],
   "macros": [
     {
       "name": "new blog",
-      "id": "44525269-057d-4389-91fb-8f2eeb1349fd",
+      "id": "395e007b-08af-44dd-b5d4-82d630d452e5",
       "commands": [
         {
           "name": "NewBlog",
           "type": "UserScript",
-          "id": "84cb5e93-fbc4-45a1-8a49-8687cd063deb",
+          "id": "621f10ab-0ad0-4b6f-a817-8cd140536d83",
           "path": "NewBlog.js",
           "settings": {}
         }
       ],
-      "runOnStartup": true
+      "runOnStartup": false
     }
   ],
   "inputPrompt": "single-line",
