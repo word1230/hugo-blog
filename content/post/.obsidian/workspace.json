@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "0e28aab7882b0e94",
+        "id": "eae7de539ff1732d",
         "type": "tabs",
         "children": [
           {
-            "id": "905093098ffcd744",
+            "id": "e8f75fee06a1a5ee",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "h.md",
+                "file": "读书笔记/h.md",
                 "mode": "source",
                 "source": false
               },
@@ -84,7 +84,8 @@
               "title": "Source Control"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -181,10 +182,11 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "905093098ffcd744",
+  "active": "d30cdb367009d373",
   "lastOpenFiles": [
     "12.md",
-    "h.md",
+    "读书笔记",
+    "读书笔记/h.md",
     "java/cicd/docker.md",
     "java/cicd/git构建本地CI流程.md",
     "java/cicd/CI从代码规范工具开始.md",
