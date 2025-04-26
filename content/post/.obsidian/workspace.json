@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "eae7de539ff1732d",
+        "id": "f193e3265da9de1a",
         "type": "tabs",
         "children": [
           {
-            "id": "e8f75fee06a1a5ee",
+            "id": "186c67fb2781b01c",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -84,8 +84,7 @@
               "title": "Source Control"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -182,11 +181,12 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "d30cdb367009d373",
+  "active": "186c67fb2781b01c",
   "lastOpenFiles": [
+    "读书笔记/h.md",
+    "hugo.exe",
     "12.md",
     "读书笔记",
-    "读书笔记/h.md",
     "java/cicd/docker.md",
     "java/cicd/git构建本地CI流程.md",
     "java/cicd/CI从代码规范工具开始.md",
