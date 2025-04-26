@@ -8,11 +8,11 @@
       "macroId": "395e007b-08af-44dd-b5d4-82d630d452e5"
     },
     {
-      "id": "e1b67c90-858a-4253-8137-76637c877f34",
-      "name": "提交",
+      "id": "16e2032e-c6b2-443c-bbc2-d5403d9e7cc5",
+      "name": "push",
       "type": "Macro",
       "command": false,
-      "macroId": "395e007b-08af-44dd-b5d4-82d630d452e5"
+      "macroId": "e53db9fb-3b6e-44ba-8c12-81dc6f819ff9"
     }
   ],
   "macros": [
@@ -23,8 +23,22 @@
         {
           "name": "NewBlog",
           "type": "UserScript",
-          "id": "621f10ab-0ad0-4b6f-a817-8cd140536d83",
+          "id": "aa08b61f-cadd-4036-9973-67dc13e7862f",
           "path": "NewBlog.js",
+          "settings": {}
+        }
+      ],
+      "runOnStartup": false
+    },
+    {
+      "name": "push",
+      "id": "e53db9fb-3b6e-44ba-8c12-81dc6f819ff9",
+      "commands": [
+        {
+          "name": "push",
+          "type": "UserScript",
+          "id": "745d4bee-fa78-4600-9e56-5bd0d8ec669b",
+          "path": "push.js",
           "settings": {}
         }
       ],
