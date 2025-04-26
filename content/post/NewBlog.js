@@ -16,7 +16,7 @@ module.exports = async (params) => {
     const fileName = `${slug}.md`;
 
     // 3. 获取 Hugo 项目根目录路径
-    const hugoRoot = `${app.vault.adapter.basePath}/../hugo`; // 假设 Hugo 项目在 Obsidian 库上级目录的 /hugo 文件夹
+    const hugoRoot = `D:\BlogFile\hugo\cheems-blog`; // 假设 Hugo 项目在 Obsidian 库上级目录的 /hugo 文件夹
     const contentPath = `content/posts/${fileName}`;
 
     try {
