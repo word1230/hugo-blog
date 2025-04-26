@@ -1,0 +1,206 @@
+{
+  "main": {
+    "id": "4b18ab0541c6cca4",
+    "type": "split",
+    "children": [
+      {
+        "id": "0e28aab7882b0e94",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "905093098ffcd744",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "h.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "h"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "8c625b89907cc001",
+    "type": "split",
+    "children": [
+      {
+        "id": "099a7de27667a1b4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0f9cfff0ad1cb695",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "ade03b838f16408e",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:CICD",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "def17a0ddc877f5e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          },
+          {
+            "id": "d30cdb367009d373",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "fc7679ab411eedd5",
+    "type": "split",
+    "children": [
+      {
+        "id": "2b9b8563434e5c24",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "773f27c29443fb9a",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "java/消息队列/Rabbitmq入门.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Rabbitmq入门 的反向链接列表"
+            }
+          },
+          {
+            "id": "6af0b0929d7ff17b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "出链"
+            }
+          },
+          {
+            "id": "00f658fc7554a216",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "c2e79b025e89c35d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "java/消息队列/Rabbitmq入门.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Rabbitmq入门 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "obsidian-git:Open Git source control": true,
+      "graph:查看关系图谱": true,
+      "switcher:打开快速切换": true,
+      "canvas:新建白板": true,
+      "daily-notes:打开/创建今天的日记": true,
+      "templates:插入模板": true,
+      "command-palette:打开命令面板": true,
+      "darlal-switcher-plus:Open in Headings Mode": false,
+      "darlal-switcher-plus:Open Symbols for the active editor": false,
+      "terminal:Open terminal": false
+    }
+  },
+  "active": "905093098ffcd744",
+  "lastOpenFiles": [
+    "12.md",
+    "h.md",
+    "java/cicd/docker.md",
+    "java/cicd/git构建本地CI流程.md",
+    "java/cicd/CI从代码规范工具开始.md",
+    "java/消息队列/Rabbitmq模式.md",
+    "java/消息队列/Rabbitmq入门.md",
+    "java/消息队列/消息中间件.md",
+    "java/消息队列/什么是中间件.md",
+    "java/cicd/CICD初识别.md",
+    "java/项目/云图库/智能协同云图库.md",
+    "java/项目/云图库/图片模块.md",
+    "java/项目/云图库",
+    "课程",
+    "My-New-Post.md",
+    "java/消息队列",
+    "java/项目",
+    "java/未命名.md",
+    "新建 文本文档.txt"
+  ]
+}
