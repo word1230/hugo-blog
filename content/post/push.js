@@ -28,7 +28,8 @@ async function main() {
     // Step 3: git push
     await runGitCommand('git push origin main', '推送失败');
 
-    console.log('操作成功！');
+    new Notice(`操作成功！`);
+    
 }
 
 module.exports = { main }; 
