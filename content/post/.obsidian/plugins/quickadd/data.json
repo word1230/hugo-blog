@@ -6,6 +6,13 @@
       "type": "Macro",
       "command": false,
       "macroId": "395e007b-08af-44dd-b5d4-82d630d452e5"
+    },
+    {
+      "id": "e1b67c90-858a-4253-8137-76637c877f34",
+      "name": "提交",
+      "type": "Macro",
+      "command": false,
+      "macroId": "395e007b-08af-44dd-b5d4-82d630d452e5"
     }
   ],
   "macros": [

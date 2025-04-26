@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "读书笔记/h.md",
+                "file": "读书笔记/123.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "h"
+              "title": "123"
             }
           }
         ]
@@ -181,14 +181,16 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "186c67fb2781b01c",
+  "active": "0f9cfff0ad1cb695",
   "lastOpenFiles": [
-    "NewBlog.js",
+    "提交.bat",
     "新建 文本文档.txt",
-    "新建文件夹",
     "读书笔记/h.md",
-    "hugo.exe",
+    "读书笔记/123.md",
     "12.md",
+    "NewBlog.js",
+    "新建文件夹",
+    "hugo.exe",
     "读书笔记",
     "java/cicd/docker.md",
     "java/cicd/git构建本地CI流程.md",
