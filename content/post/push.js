@@ -31,4 +31,4 @@ async function main() {
     console.log('操作成功！');
 }
 
-main();
+module.exports = { main }; 
