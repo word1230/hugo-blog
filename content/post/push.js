@@ -8,13 +8,15 @@ const repoPath = path.resolve('D:/BlogFile/hugo/cheems-blog');
 
 async function runGitCommand(command, errorMsg) {
     try {
+    
         const { stdout } = await execPromise(command, { cwd: repoPath });
-        console.log(stdout);
+        new Notice(`✅ ${command.split(' ')[0]} 成功`, 3000);
         return true;
     } catch (err) {
-        console.error(`[错误] ${errorMsg}:`, err.stderr || err.message);
+        new Notice(`❌ ${errorMsg}: ${err.message}`, 5000);
+
         process.exit(1);
-    }
+    } 
 }
 
 async function main() {
