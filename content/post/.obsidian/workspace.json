@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "java/消息队列/Rabbitmq入门.md",
+                "file": "java/消息队列/Rabbitmq消息传播模式.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Rabbitmq入门"
+              "title": "Rabbitmq消息传播模式"
             }
           }
         ]
@@ -88,7 +88,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "fc7679ab411eedd5",
@@ -197,9 +198,9 @@
   },
   "active": "186c67fb2781b01c",
   "lastOpenFiles": [
-    "java/消息队列/消息中间件.md",
-    "java/消息队列/Rabbitmq模式.md",
     "java/消息队列/Rabbitmq入门.md",
+    "java/消息队列/Rabbitmq消息传播模式.md",
+    "java/消息队列/消息中间件.md",
     "java/项目/云图库/图片模块.md",
     "java/项目/云图库/智能协同云图库.md",
     "读书笔记/原子习惯/原子习惯.md",
