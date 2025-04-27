@@ -7,5 +7,5 @@ menu:
     main:
         weight: -70
         params: 
-            icon: search
+            icon: archives
 ---

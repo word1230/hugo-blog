@@ -4,7 +4,7 @@ slug: "categories"
 layout: "categories"
 menu:
     main:
-        weight: -60
+        weight: -80
         params: 
             icon: categories
 ---

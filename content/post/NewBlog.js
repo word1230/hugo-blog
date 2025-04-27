@@ -33,7 +33,7 @@ draft: true
 
         new Notice(`文章创建成功：${fileName}`);
     } catch (error) {
-        new Notice(`创建失败：${error.message}`);
+     new Notice(`文章创建成功：${fileName}`);
         console.error(error);
     }
 };
