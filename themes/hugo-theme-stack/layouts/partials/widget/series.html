@@ -1,0 +1,20 @@
+<div class="widget">
+  <h3 class="widget-title">系列导航</h3>
+  <ul class="series-list">
+    {{ range $name, $taxonomy := .Site.Taxonomies.series }}
+      <li class="series-item">
+        <a href="{{ "/series/" | relURL }}{{ $name | urlize }}" 
+           class="series-link{{ if eq $name $.Page.Params.series }} active{{ end }}">
+          {{ $name }} ({{ len $taxonomy.Pages }})
+        </a>
+        <ul class="series-posts">
+          {{ range sort $taxonomy.Pages "Date" }}
+            <li class="series-post{{ if eq .Permalink $.Page.Permalink }} current{{ end }}">
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </li>
+          {{ end }}
+        </ul>
+      </li>
+    {{ end }}
+  </ul>
+</div>
