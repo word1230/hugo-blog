@@ -5,7 +5,7 @@ series: ["CICD"]
 series_weight: 1
 categories: ["java","CICD"]
 ---
-
+{{< series >}}
 要理解CI/CD，我们首先需要了解其诞生的背景——DevOps方法论。
 
 # devops

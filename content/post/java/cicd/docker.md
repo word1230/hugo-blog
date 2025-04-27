@@ -5,3 +5,4 @@ series: ["CICD"]
 series_weight: 4
 categories: ["java","CICD"]
 ---
+{{< series >}}
