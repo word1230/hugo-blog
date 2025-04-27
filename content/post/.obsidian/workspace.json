@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "课程/编译原理/概述.md",
+                "file": "java/消息队列/Rabbitmq入门.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "概述"
+              "title": "Rabbitmq入门"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:CICD",
+                "query": "tag:原子习惯",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -159,6 +159,20 @@
               "icon": "lucide-list",
               "title": "Rabbitmq入门 的大纲"
             }
+          },
+          {
+            "id": "74b12fd3acf19808",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
           }
         ]
       }
@@ -183,22 +197,25 @@
   },
   "active": "186c67fb2781b01c",
   "lastOpenFiles": [
-    "java/cicd/CI从代码规范工具开始.md",
+    "java/消息队列/Rabbitmq模式.md",
+    "java/消息队列/消息中间件.md",
+    "java/消息队列/Rabbitmq入门.md",
+    "java/项目/云图库/图片模块.md",
+    "java/项目/云图库/智能协同云图库.md",
+    "读书笔记/原子习惯/原子习惯.md",
     "课程/编译原理/概述.md",
+    "建站/hugo使用",
+    "建站",
+    "java/cicd/CI从代码规范工具开始.md",
     "课程/编译原理",
-    "读书笔记/未命名",
+    "读书笔记/原子习惯",
     "课程",
     "java/cicd/CICD初识别.md",
     "java/cicd/docker.md",
     "java/cicd/git构建本地CI流程.md",
     "java/消息队列/什么是中间件.md",
-    "java/消息队列/消息中间件.md",
     "test.md",
     "555.md",
-    "java/消息队列/Rabbitmq入门.md",
-    "java/消息队列/Rabbitmq模式.md",
-    "java/项目/云图库/智能协同云图库.md",
-    "java/项目/云图库/图片模块.md",
     "java/项目/云图库",
     "java/项目",
     "java/消息队列",
@@ -208,8 +225,6 @@
     "12.md",
     "xxsdadw.md",
     "读书笔记/123.md",
-    "push.js",
-    "新建 文本文档.txt",
     "读书笔记/h.md",
     "My-New-Post.md",
     "java/未命名.md"
