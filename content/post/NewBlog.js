@@ -1,39 +1,52 @@
 const util = require('util');
 const child_process = require('child_process');
+const path = require('path');
 const exec = util.promisify(child_process.exec);
+
+// Hugo配置（根据实际情况修改）
+const HUGO_CONFIG = {
+    exePath: path.join('D:', 'BlogFile', 'hugo', 'cheems-blog', 'hugo.exe'), // 完整hugo路径
+    contentDir: path.join('content', 'post'), // 新建文章存放目录
+    archetype: 'default' // 对应 archetypes/post.md 模板文件
+};
 
 module.exports = async (params) => {
     const { quickAddApi } = params;
 
-    // 1. 获取用户输入的标题
-    const title = await quickAddApi.inputPrompt("请输入文章标题");
-    if (!title) return;
-
-    // 2. 生成符合 Hugo 要求的文件名（slug 格式）
-    const slug = title.toLowerCase()
-        .replace(/[^\w\s]/gi, '')
-        .replace(/\s+/g, '-');
-    const fileName = `${slug}.md`;
-
-    // 3. 获取 Hugo 项目根目录路径
-    const hugoRoot = "D:\\BlogFile\\hugo\\cheems-blog"; // 假设 Hugo 项目在 Obsidian 库上级目录的 /hugo 文件夹
-    const contentPath = `content/post/${fileName}`;
-
     try {
-        // 4. 执行 Hugo 命令
-        const { stdout, stderr } = await exec(`hugo new ${contentPath}`, { cwd: hugoRoot });
+        // 1. 获取标题并生成slug
+        const title = await quickAddApi.inputPrompt("请输入文章标题");
+        if (!title) throw new Error("标题不能为空");
+        
+        const slug = title.toLowerCase()
+            .replace(/[^a-z0-9\u4E00-\u9FA5]/gi, '') // 支持中文
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-');
 
-        // 5. 自动填充 Front Matter（通过模板文件更高效，此处演示代码修改）
-        const file = app.vault.getAbstractFileByPath(`../hugo/${contentPath}`);
-        await app.vault.modify(file, `---
-title: "${title}"
-date: ${new Date().toISOString()}
-draft: true
----\n\n## 开始写作...`);
+        // 2. 构建完整命令
+        const hugoCmd = `"${HUGO_CONFIG.exePath}" new "${
+            path.join(HUGO_CONFIG.contentDir, `${slug}.md`)
+        }" --kind ${HUGO_CONFIG.archetype}`;
 
-        new Notice(`文章创建成功：${fileName}`);
+        // 3. 执行Hugo命令
+        const { stdout, stderr } = await exec(hugoCmd, { 
+            cwd: path.dirname(HUGO_CONFIG.exePath),
+            windowsHide: true 
+        });
+
+        // 4. 验证文件创建
+        const outputPath = path.join(
+            path.dirname(HUGO_CONFIG.exePath),
+            HUGO_CONFIG.contentDir,
+            `${slug}.md`
+        );
+        
+        new Notice(`文章创建成功：${outputPath}`);
+        return outputPath;
+
     } catch (error) {
-     new Notice(`文章创建成功：${fileName}`);
-        console.error(error);
+        console.error(`创建失败: ${error.message}`);
+        new Notice(`创建失败: ${error.message}`);
+        throw error;
     }
 };

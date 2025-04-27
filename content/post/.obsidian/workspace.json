@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "java/cicd/CI从代码规范工具开始.md",
+                "file": "课程/编译原理/概述.md",
                 "mode": "source",
-                "source": true
+                "source": false
               },
               "icon": "lucide-file",
-              "title": "CI从代码规范工具开始"
+              "title": "概述"
             }
           }
         ]
@@ -183,10 +183,14 @@
   },
   "active": "186c67fb2781b01c",
   "lastOpenFiles": [
+    "java/cicd/CI从代码规范工具开始.md",
+    "课程/编译原理/概述.md",
+    "课程/编译原理",
+    "读书笔记/未命名",
+    "课程",
     "java/cicd/CICD初识别.md",
     "java/cicd/docker.md",
     "java/cicd/git构建本地CI流程.md",
-    "java/cicd/CI从代码规范工具开始.md",
     "java/消息队列/什么是中间件.md",
     "java/消息队列/消息中间件.md",
     "test.md",
@@ -206,10 +210,7 @@
     "读书笔记/123.md",
     "push.js",
     "新建 文本文档.txt",
-    "提交.bat",
     "读书笔记/h.md",
-    "NewBlog.js",
-    "新建文件夹",
     "My-New-Post.md",
     "java/未命名.md"
   ]
