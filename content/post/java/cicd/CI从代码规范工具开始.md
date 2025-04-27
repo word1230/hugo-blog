@@ -1,9 +1,11 @@
 ---
 title: CI从代码规范工具开始
-series: ["CICD"]
+series:
+  - CICD
 series_weight: 2
-categories: ["java","CICD"]
-date: 2025-04-24T10:18:36+08:00  
+categories:
+  - 技术学习笔记
+date: 2025-04-24T10:18:36+08:00
 ---
 {{< series >}}
 上一节我们提到CI 可以帮助我们处理语法/拼写错误，这主要依靠代码规范工具来实现

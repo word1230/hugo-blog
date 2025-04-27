@@ -1,9 +1,11 @@
 ---
 title: CICD初识
-date: 2025-04-24T15:58:30+08:00   
-series: ["CICD"]
+date: 2025-04-24T15:58:30+08:00
+series:
+  - CICD
 series_weight: 1
-categories: ["java","CICD"]
+categories:
+  - 技术学习笔记
 ---
 {{< series >}}
 要理解CI/CD，我们首先需要了解其诞生的背景——DevOps方法论。

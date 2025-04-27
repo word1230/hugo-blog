@@ -5,8 +5,7 @@ series:
   - 消息队列
 series_weight: 4
 categories:
-  - java
-  - 消息队列
+  - 技术学习笔记
 ---
 {{< series >}}
 

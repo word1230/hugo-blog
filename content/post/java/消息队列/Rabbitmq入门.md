@@ -5,8 +5,7 @@ series:
   - 消息队列
 series_weight: 3
 categories:
-  - java
-  - 消息队列
+  - 技术学习笔记
 ---
 {{< series >}}
 # Rabbitmq的安装

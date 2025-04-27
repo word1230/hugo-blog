@@ -1,9 +1,11 @@
 ---
 title: git构建本地CI流程
-series: ["CICD"]
+series:
+  - CICD
 series_weight: 3
-date: 2025-04-24T16:26:12+08:00   
-categories: ["java","CICD"]
+date: 2025-04-24T16:26:12+08:00
+categories:
+  - 技术学习笔记
 ---
 {{< series >}}
 上一节我们实现了使用代码规范工具检查代码，这一节我们使用git 将检查代码这一步融入我们的工作流中，实现自动检查
