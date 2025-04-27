@@ -1,20 +1,23 @@
-<div class="widget">
-  <h3 class="widget-title">系列导航</h3>
+{{- $context := .Context -}}
+{{- $params := .Params -}}
+{{- $title := default "系列专题" $params.title -}}
+{{- $taxonomy := $context.Site.Taxonomies.series -}}
+
+{{ if $taxonomy }}
+<div class="widget-series">
+  {{ with $title }}<h3 class="widget-title">{{ . }}</h3>{{ end }}
   <ul class="series-list">
-    {{ range $name, $taxonomy := .Site.Taxonomies.series }}
-      <li class="series-item">
-        <a href="{{ "/series/" | relURL }}{{ $name | urlize }}" 
-           class="series-link{{ if eq $name $.Page.Params.series }} active{{ end }}">
-          {{ $name }} ({{ len $taxonomy.Pages }})
-        </a>
-        <ul class="series-posts">
-          {{ range sort $taxonomy.Pages "Date" }}
-            <li class="series-post{{ if eq .Permalink $.Page.Permalink }} current{{ end }}">
-              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-            </li>
-          {{ end }}
-        </ul>
-      </li>
+    {{ range $name, $pages := $taxonomy }}
+    {{ $seriesURL := printf "/series/%s/" $name | urlize }}
+    {{ $seriesPage := $context.Site.GetPage (printf "series/%s" $name) }}
+    <li class="series-item">
+      <a href="{{ $seriesURL | absURL }}" 
+         class="series-link{{ if or (eq $context.RelPermalink $seriesURL) (eq $context.RelPermalink $seriesPage.RelPermalink) }} active{{ end }}">
+        {{ with $seriesPage }}{{ .Title | default $name }}{{ else }}{{ $name }}{{ end }}
+        {{ if $params.showCount }}<span class="count">({{ len $pages }})</span>{{ end }}
+      </a>
+    </li>
     {{ end }}
   </ul>
 </div>
+{{ end }}

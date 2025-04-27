@@ -1,9 +1,11 @@
 ---
 title: Rabbitmq入门
-date: 2025-04-24T18:10:43+08:00  
-tags: ["消息队列"]
+date: 2025-04-24T18:10:43+08:00 
+series: ["消息队列"]
+series_weight: 4
 categories:  ["java","消息队列"] 
 ---
+{{< series >}}
 # Rabbitmq的安装
 
 

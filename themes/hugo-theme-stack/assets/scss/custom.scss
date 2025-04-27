@@ -1,24 +1,39 @@
-/* Place your custom SCSS in HUGO_SITE_FOLDER/assets/scss/custom.scss */
-.series-list {
-  margin-left: 1rem;
-}
+/* 系列组件样式 */
+.widget-series {
+  margin-bottom: 2rem;
+  
+  .series-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.8rem 0;
+  }
 
-.series-posts {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-}
+  .series-item {
+    margin: 0.3rem 0;
+  }
 
-.series-item:hover .series-posts {
-  max-height: 500px; /* 根据实际内容调整 */
-}
+  .series-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
 
-.series-link.active {
-  font-weight: 600;
-  color: var(--primary-color);
-}
+    &:hover {
+      background: rgba(var(--color-contrast-medium), 0.05);
+      transform: translateX(3px);
+    }
 
-.series-post.current a {
-  border-left: 3px solid var(--accent-color);
-  padding-left: 0.5rem;
+    &.active {
+      color: var(--color-primary);
+      font-weight: 600;
+      background: rgba(var(--color-primary), 0.05);
+    }
+  }
+
+  .count {
+    font-size: 0.9em;
+    color: rgba(var(--color-contrast-medium), 0.8);
+  }
 }

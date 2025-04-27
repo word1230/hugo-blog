@@ -8,7 +8,6 @@ copyright: cheems
 taxonomies:
   category: categories
   series: series
-  tag: tags
 
 # Theme i18n support
 # Available values: ar, bn, ca, de, el, en, es, fr, hu, id, it, ja, ko, nl, pt-br, th, uk, zh-cn, zh-hk, zh-tw
@@ -50,7 +49,19 @@ params:
     rssFullContent: true
     favicon: /favicon.ico
     # e.g.: favicon placed in `static/favicon.ico` of your site folder, then set this field to `/favicon.ico` (`/` is necessary)
-    widgets: search, series, categories,archives,tag-cloud.toc
+    widgets: 
+      left:
+      - search
+      - recent
+      - categories
+      - series_list  # <--- 在你想要的位置添加 "series_list"
+      - social
+      - archives
+
+ 
+    right:
+      - toc
+
     footer:
         since: 2025
         customText:
@@ -168,10 +179,13 @@ params:
             - type: categories
               params:
                   limit: 10
-            - type: tag-cloud
+            - type: series
               params:
                   limit: 10
-             
+                  title: "文章系列"
+                  showCount: true
+            
+            
         page:
             - type: toc
 
