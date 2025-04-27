@@ -1,0 +1,160 @@
+{{/* layouts/shortcodes/series.html */}}
+{{- if .Page.Params.series -}}
+  {{- $rawSeries := .Get 0 | default .Page.Params.series -}}
+  {{- $series := slice -}}
+
+  {{- if reflect.IsSlice $rawSeries -}}
+    {{- $series = $rawSeries -}}
+  {{- else -}}
+    {{- $series = $rawSeries | slice -}}
+  {{- end -}}
+
+  <div class="series-modern">
+    <div class="series-header-modern">
+      <svg class="series-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3-13h-6v6h2v-4h4v6h-2v4h-2v2h6v-6h-2v-4h-2v-2z"/>
+      </svg>
+      <h3 class="series-title-modern">系列导航</h3>
+    </div>
+
+    {{- range $s := $series -}}
+      {{- $related := where site.Pages ".Params.series" "intersect" (slice $s) -}}
+      {{- $validPages := slice -}}
+      
+      {{- range $page := $related -}}
+        {{- if and $page.Date (ne $page.Date.Year 0) -}}
+          {{- $validPages = $validPages | append $page -}}
+        {{- end -}}
+      {{- end -}}
+
+      {{- $sortedPages := sort $validPages "Date" "asc" -}}
+      
+      {{- with $sortedPages -}}
+        <div class="series-group-modern">
+          <div class="series-label">
+            <span class="series-name">{{ $s }}</span>
+            <span class="series-count">{{ len $sortedPages }} 篇</span>
+          </div>
+          <ol class="series-list-modern">
+            {{- range $index, $page := $sortedPages -}}
+              <li class="series-item-modern{{ if eq $page $.Page }} active{{ end }}" 
+                  data-order="{{ add $index 1 }}">
+                <a href="{{ $page.RelPermalink }}" class="series-link">
+                  <span class="series-meta">
+                    <span class="series-index">#{{ add $index 1 }}</span>
+                    <span class="series-content">
+                      {{ $page.LinkTitle }}
+                      {{ if eq $page $.Page }}
+                        <svg class="current-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                      {{ end }}
+                    </span>
+                  </span>
+                  <time class="series-date-modern">{{ $page.Date.Format "2006.01.02" }}</time>
+                </a>
+              </li>
+            {{- end -}}
+          </ol>
+        </div>
+      {{- end -}}
+    {{- end -}}
+  </div>
+
+  <style>
+    :root {
+      --series-accent: {{ .Site.Params.seriesAccent | default "#2c7a7b" }};
+      --series-bg: {{ .Site.Params.seriesBg | default "#f8fafc" }};
+      --series-radius: 12px;
+    }
+
+    /* 新增：隐藏原生列表序号 */
+    .series-list-modern {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .current-icon {
+      width: 1em;
+      height: 1em;
+      vertical-align: middle;
+      margin-left: 0.5em;
+    }
+
+    .series-modern {
+      background: var(--series-bg);
+      border-radius: var(--series-radius);
+      box-shadow: 0 8px 32px rgba(0,32,64,.06);
+      margin: 2.5rem 0;
+      overflow: hidden;
+    }
+
+    .series-header-modern {
+      display: flex;
+      align-items: center;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, var(--series-accent) 0%, rgba(var(--series-accent-rgb), 0.9) 100%);
+      color: #333;
+    }
+
+    .series-icon {
+      width: 28px;
+      height: 28px;
+      margin-right: 12px;
+      fill: #333;
+    }
+
+    .series-title-modern {
+      margin: 0;
+      font-size: 1.4em;
+      font-weight: 600;
+      color: #333;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .series-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    .series-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-grow: 1;
+    }
+
+    .series-index {
+      font-weight: 500;
+      color: var(--series-accent);
+    }
+
+    .series-date-modern {
+      color: #64748b;
+      font-size: 0.9em;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    .series-content {
+      flex-grow: 1;
+    }
+
+    @media (max-width: 768px) {
+      .series-link {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .series-date-modern {
+        margin-left: 0;
+        align-self: flex-end;
+      }
+
+      .series-meta {
+        width: 100%;
+      }
+    }
+  </style>
+{{- end -}}

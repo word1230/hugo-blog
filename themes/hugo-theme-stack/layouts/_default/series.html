@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="series-list">
+  {{ range .Pages.ByDate }}
+    <article>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+      <span>{{ .Date.Format "2006-01-02" }}</span>
+    </article>
+  {{ end }}
+</div>
+{{ end }}

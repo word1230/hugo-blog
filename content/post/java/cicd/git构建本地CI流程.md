@@ -1,6 +1,6 @@
 ---
 title: git构建本地CI流程
-date: 2025-04-26 16:26:12
+date: 2025-04-24T16:26:12+08:00   
 tags: ["CICD"]
 categories: ["java","CICD"]
 ---

@@ -1,6 +1,6 @@
 ---
 title: Rabbitmq入门
-date: 2025-04-25 18:10:43
+date: 2025-04-24T18:10:43+08:00  
 tags: ["消息队列"]
 categories:  ["java","消息队列"] 
 ---

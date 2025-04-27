@@ -1,8 +1,9 @@
 ---
 title: '{{ replace .File.ContentBaseName "-" " " | title }}'
-date: {{ time.Now.Format  "2006-01-02 03:04:05" }}
+date: {{ .Date}}
 draft: true
-categories: ["分类"]
 tags: ["标签"]
+series: ["系列"]
 ---
 
+{{< series >}}

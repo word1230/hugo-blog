@@ -15,7 +15,7 @@
               "state": {
                 "file": "java/项目/云图库/图片模块.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "图片模块"
@@ -183,17 +183,17 @@
   },
   "active": "186c67fb2781b01c",
   "lastOpenFiles": [
+    "java/消息队列/什么是中间件.md",
     "java/项目/云图库/智能协同云图库.md",
     "java/项目/云图库/图片模块.md",
-    "java/cicd/docker.md",
-    "test.md",
-    "java/cicd/CICD初识别.md",
-    "java/cicd/CI从代码规范工具开始.md",
-    "java/cicd/git构建本地CI流程.md",
-    "java/消息队列/什么是中间件.md",
-    "java/消息队列/消息中间件.md",
-    "java/消息队列/Rabbitmq模式.md",
     "java/消息队列/Rabbitmq入门.md",
+    "java/消息队列/Rabbitmq模式.md",
+    "java/消息队列/消息中间件.md",
+    "java/cicd/git构建本地CI流程.md",
+    "java/cicd/CI从代码规范工具开始.md",
+    "java/cicd/docker.md",
+    "java/cicd/CICD初识别.md",
+    "test.md",
     "555.md",
     "java/项目/云图库",
     "java/项目",
