@@ -1,5 +1,7 @@
 ---
 title: git构建本地CI流程
+series: ["CICD"]
+series_weight: 3
 date: 2025-04-24T16:26:12+08:00   
 categories: ["java","CICD"]
 ---

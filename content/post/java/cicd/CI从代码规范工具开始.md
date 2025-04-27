@@ -1,6 +1,7 @@
 ---
 title: CI从代码规范工具开始
-
+series: ["CICD"]
+series_weight: 2
 categories: ["java","CICD"]
 date: 2025-04-24T10:18:36+08:00  
 ---

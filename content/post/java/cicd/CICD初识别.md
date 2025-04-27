@@ -1,7 +1,8 @@
 ---
 title: CICD初识
 date: 2025-04-24T15:58:30+08:00   
-
+series: ["CICD"]
+series_weight: 1
 categories: ["java","CICD"]
 ---
 
