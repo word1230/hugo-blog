@@ -602,18 +602,14 @@ public class Consumer {
 >代码
 
 - 在生产时给消息加上路由key
-	`channel.basicPublish("direct","xxx",null,"hello world".getBytes());`
-	路由key 为xxx
+	- `channel.basicPublish("direct","xxx",null,"hello world".getBytes());`路由key 为xxx
 
 - 在交换机与队列绑定时增加路由key
 - 交换机设定为direct类型
-	`channel.exchangeDeclare("direct", "direct");`  
-	设定交换机为direct
-	`channel.queueDeclare("queue1", false, false, false, null); `   
-	`channel.queueBind("queue1", "direct", "xxx");`
-	consumer设定路由key为xxx
-	`channel.queueBind("queue2", "direct", "aaa");`
-	consumer2设定路由key为aaa
+	- `channel.exchangeDeclare("direct", "direct");`  设定交换机为direct
+	- `channel.queueDeclare("queue1", false, false, false, null); `   
+	- ` channel.queueBind("queue1", "direct", "xxx");`consumer设定路由key为xxx
+	- `channel.queueBind("queue2", "direct", "aaa");`consumer2设定路由key为aaa
 这样只有consumer1 能收到消息
 其他代码不变
 
@@ -736,16 +732,13 @@ public class Consumer {
 > 代码
 
 1. 在消息生产时将路由key 修改为携带三种符号的
-	`channel.basicPublish("topic","com.xxx.111",null,"hello world".getBytes());`
+	- `channel.basicPublish("topic","com.xxx.111",null,"hello world".getBytes());`
 2. 将交换机修改为direct
 3. 绑定时将路由key 修改为携带三种符号的
-		`channel.exchangeDeclare("topic", "topic");  `
-	  `channel.queueDeclare("queue1", false, false, false, null); ` 
-	  `channel.queueBind("queue1", "topic", "*.111");`
-	
-		channel.queueBind("queue2", "topic", "#.111");
-		
-
+	- 	`channel.exchangeDeclare("topic", "topic");  `
+	-   `channel.queueDeclare("queue1", false, false, false, null); ` 
+	-   `channel.queueBind("queue1", "topic", "*.111");`
+	- 	`channel.queueBind("queue2", "topic", "#.111");`
 只有第二个可以匹配到了
 
 - 生产者
