@@ -42,6 +42,7 @@ categories:
 
 - 特点：
 		只有一个消费者进行消费
+		空交换机
 
 - 代码：
 生产者
@@ -158,8 +159,304 @@ public class Consumer {
 
 ### 工作队列模式
 
-对于消息有两种处理模式
+特点：
+- 多个消费者
+- 空交换机
 
+
+- 对于消息有两种处理模式：
+	1. 轮询（默认），一个消费者一条
+	2. 公平， 根据消费者的消费能力分配给每个消费者不同数量的消息
+
+
+>轮询模式的代码：
+
+与简单队列模式唯一的区别是多了一个消费者
+
+生产者：
+```java
+public class Producer {  
+  
+    public static void main(String[] args) throws IOException {  
+        //1. 创建工厂  
+  
+        ConnectionFactory factory = new ConnectionFactory();  
+  
+        factory.setHost("localhost");  
+        factory.setPort(5672);  
+        factory.setUsername("guest");  
+        factory.setPassword("guest");  
+        factory.setVirtualHost("/");  
+  
+  
+        //2. 创建连接  
+       Connection connection = null;  
+       try {  
+           connection = factory.newConnection();  
+           //3. 创建通道  
+           Channel channel = connection.createChannel();  
+  
+           // 4. 创建交换机（不需要）  
+  
+           // 5. 创建队列  
+           channel.queueDeclare("queue1", false, false, false, null);  
+  
+  
+           //6.生产信息  
+           for (int i = 0; i < 10; i++) {  
+               String x = i +"";  
+               channel.basicPublish("", "queue1", null, x.getBytes());  
+           }  
+  
+  
+  
+       } catch (IOException e) {  
+           throw new RuntimeException(e);  
+       } catch (TimeoutException e) {  
+           throw new RuntimeException(e);  
+       }finally {  
+           if (connection != null) {  
+               connection.close();  
+           }  
+       }  
+  
+  
+        //7. 关闭连接  
+    }  
+  
+}
+```
+
+消费者1：
+```java
+public class Consumer {  
+    public static void main(String[] args) throws IOException {  
+        ConnectionFactory factory = new ConnectionFactory();  
+  
+        factory.setHost("localhost");  
+        factory.setPort(5672);  
+        factory.setVirtualHost("/");  
+        factory.setUsername("guest");  
+        factory.setPassword("guest");  
+  
+        Connection connection = null;  
+        try{  
+            connection = factory.newConnection();  
+  
+            Channel channel = connection.createChannel();  
+  
+            channel.basicConsume("queue1", true, new DeliverCallback() {  
+                @Override  
+                public void handle(String s, Delivery delivery) throws IOException {  
+                    System.out.println("消费者1收到："+new String(delivery.getBody()));  
+                }  
+            }, new CancelCallback() {  
+                @Override  
+                public void handle(String s) throws IOException {  
+                    System.out.println("cancelled");  
+                }  
+            });  
+  
+            System.out.println("Waiting for messages. To exit press CTRL+C");  
+            System.in.read();  
+  
+  
+        } catch (IOException e) {  
+            throw new RuntimeException(e);  
+        } catch (TimeoutException e) {  
+            throw new RuntimeException(e);  
+        }finally {  
+            if (connection != null) {  
+                connection.close();  
+            }  
+        }  
+    }  
+}
+```
+消费者2
+```java
+package com.cheems.work;  
+  
+import com.rabbitmq.client.*;  
+  
+import java.io.IOException;  
+import java.util.concurrent.TimeoutException;  
+  
+public class Consumer2 {  
+    public static void main(String[] args) throws IOException {  
+        ConnectionFactory factory = new ConnectionFactory();  
+  
+        factory.setHost("localhost");  
+        factory.setPort(5672);  
+        factory.setVirtualHost("/");  
+        factory.setUsername("guest");  
+        factory.setPassword("guest");  
+  
+        Connection connection = null;  
+        try{  
+            connection = factory.newConnection();  
+  
+            Channel channel = connection.createChannel();  
+  
+            channel.basicConsume("queue1", true, new DeliverCallback() {  
+                @Override  
+                public void handle(String s, Delivery delivery) throws IOException {  
+                    System.out.println("消费者2收到："+new String(delivery.getBody()));  
+                }  
+            }, new CancelCallback() {  
+                @Override  
+                public void handle(String s) throws IOException {  
+                    System.out.println("cancelled");  
+                }  
+            });  
+  
+            System.out.println("Waiting for messages. To exit press CTRL+C");  
+            System.in.read();  
+  
+  
+        } catch (IOException e) {  
+            throw new RuntimeException(e);  
+        } catch (TimeoutException e) {  
+            throw new RuntimeException(e);  
+        }finally {  
+            if (connection != null) {  
+                connection.close();  
+            }  
+        }  
+    }  
+}
+```
+
+结果：
+消费者1 ： 1 3  5 7 9
+消费者2： 2 4 6 8 10
+
+
+>公平模式的代码
+
+实现公平模式是指：
+通过设置prefetch_count =1 ,让Rabbitmq每次都只给一个消费者发送一个消息，当他处理完并手动确认后，才给他发送下一个，从而实现能者多劳
+
+- 代码：
+
+消费者设置每次只能拿到一个消息，同时设置手动确认
+
+生产者不变
+
+消费者1：
+```java
+
+public class Consumer {  
+    public static void main(String[] args) throws IOException {  
+        ConnectionFactory factory = new ConnectionFactory();  
+  
+        factory.setHost("localhost");  
+        factory.setPort(5672);  
+        factory.setVirtualHost("/");  
+        factory.setUsername("guest");  
+        factory.setPassword("guest");  
+  
+        Connection connection = null;  
+        try{  
+            connection = factory.newConnection();  
+  
+            Channel channel = connection.createChannel();  
+  
+  
+            //设定每次分发的消息数量为1  
+            int prefetch_count =1;  
+            channel.basicQos(prefetch_count);  
+  
+            //关闭自动确认  
+            channel.basicConsume("queue1", false, new DeliverCallback() {  
+                @Override  
+                public void handle(String s, Delivery delivery) throws IOException {  
+                    System.out.println("消费者1收到："+new String(delivery.getBody()));  
+                    //手动确认  
+                channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);  
+                }  
+            }, new CancelCallback() {  
+                @Override  
+                public void handle(String s) throws IOException {  
+                    System.out.println("cancelled");  
+                }  
+            });  
+  
+            System.out.println("Waiting for messages. To exit press CTRL+C");  
+            System.in.read();  
+  
+        } catch (IOException e) {  
+            throw new RuntimeException(e);  
+        } catch (TimeoutException e) {  
+            throw new RuntimeException(e);  
+        }finally {  
+            if (connection != null) {  
+                connection.close();  
+            }  
+        }  
+    }  
+}
+```
+
+消费者2：
+```java
+
+  
+public class Consumer2 {  
+    public static void main(String[] args) throws IOException {  
+        ConnectionFactory factory = new ConnectionFactory();  
+  
+        factory.setHost("localhost");  
+        factory.setPort(5672);  
+        factory.setVirtualHost("/");  
+        factory.setUsername("guest");  
+        factory.setPassword("guest");  
+  
+        Connection connection = null;  
+        try{  
+            connection = factory.newConnection();  
+  
+            Channel channel = connection.createChannel();  
+  
+            channel.basicQos(1);  
+  
+            channel.basicConsume("queue1", false, new DeliverCallback() {  
+                @Override  
+                public void handle(String s, Delivery delivery) throws IOException {  
+                    System.out.println("消费者2收到："+new String(delivery.getBody()));  
+                    try {  
+                        Thread.sleep(3000);  
+                    } catch (InterruptedException e) {  
+                        throw new RuntimeException(e);  
+                    }  
+                    channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);  
+  
+                }  
+            }, new CancelCallback() {  
+                @Override  
+                public void handle(String s) throws IOException {  
+                    System.out.println("cancelled");  
+                }  
+            });  
+  
+            System.out.println("Waiting for messages. To exit press CTRL+C");  
+            System.in.read();  
+  
+  
+        } catch (IOException e) {  
+            throw new RuntimeException(e);  
+        } catch (TimeoutException e) {  
+            throw new RuntimeException(e);  
+        }finally {  
+            if (connection != null) {  
+                connection.close();  
+            }  
+        }  
+    }  
+}
+```
+
+结果： 消费者2 只收到一个消息
 
 
 
@@ -167,12 +464,384 @@ public class Consumer {
 ### 发布订阅模式
 
 
+> 特点
+- 所有消费者都会收到消息
+- 多个消费者
+- 使用fanout交换机
+- **有多个队列**（因此队列由消费者创建）
+
+
+> 代码
+
+比队列模式的轮询方式的代码 多了 设置==交换机并将交换机与队列绑定==这一步
+
+- 生产者
+只需要生产信息， 交换机与队列都交给消费者来创建
+第二个参数为： 队列名称/路由key ，发布订阅模式的路由key不生效为空
+`channel.basicPublish("exchange1","",null,"hello world".getBytes());`
+
+```java
+package com.cheems.fanout;  
+  
+import com.rabbitmq.client.Channel;  
+import com.rabbitmq.client.Connection;  
+import com.rabbitmq.client.ConnectionFactory;  
+  
+import java.io.IOException;  
+import java.util.concurrent.TimeoutException;  
+  
+public class Producer {  
+    public static void main(String[] args) throws IOException {  
+        ConnectionFactory factory = new ConnectionFactory();  
+        factory.setHost("localhost");  
+        factory.setPort(5672);  
+        factory.setUsername("guest");  
+        factory.setPassword("guest");  
+        factory.setVirtualHost("/");  
+  
+        Connection connection = null;  
+        try{  
+            connection = factory.newConnection();  
+  
+            Channel channel = connection.createChannel();  
+  
+  
+  
+            //生产者的队列设为空  
+            channel.basicPublish("exchange1","",null,"hello world".getBytes());  
+  
+        } catch (IOException e) {  
+            throw new RuntimeException(e);  
+        } catch (TimeoutException e) {  
+            throw new RuntimeException(e);  
+        }finally {  
+            if(connection != null){  
+                connection.close();  
+            }  
+        }  
+    }  
+}
+```
+
+- 消费者1/2
+
+增加了构建交换机与队列的代码
+
+`channel.exchangeDeclare("exchange1", "fanout");  
+第一个参数为：交换机名称， 第二个参数为交换机类型
+  
+`channel.queueDeclare("queue1", true, false, false, null);  
+  
+`channel.queueBind("queue1", "exchange1", "");
+第一个参数： 队列名， 第二个参数交换机名， 第三个参数路由key  `
+
+
+```java
+public class Consumer {  
+  
+    public static void main(String[] args) throws IOException {  
+  
+        ConnectionFactory factory = new ConnectionFactory();  
+        factory.setHost("localhost");  
+        factory.setPort(5672);  
+        factory.setVirtualHost("/");  
+        factory.setUsername("guest");  
+        factory.setPassword("guest");  
+  
+        Connection connection = null;  
+        try{  
+            connection = factory.newConnection();  
+  
+            Channel channel = connection.createChannel();  
+  
+            channel.exchangeDeclare("exchange1", "fanout");  
+  
+            channel.queueDeclare("queue1", true, false, false, null);  
+  
+            channel.queueBind("queue1", "exchange1", "");  
+  
+  
+            DeliverCallback deliverCallback = (consumerTag, delivery) -> {  
+                String message = new String(delivery.getBody(), "UTF-8");  
+                System.out.println("2号Received: " + message);  
+            };  
+  
+  
+            channel.basicConsume("queue1",true,deliverCallback,consumerTag -> {  
+                System.out.println("失败");  
+            });  
+  
+            System.in.read();  
+  
+  
+  
+        } catch (IOException e) {  
+            throw new RuntimeException(e);  
+        } catch (TimeoutException e) {  
+            throw new RuntimeException(e);  
+        }finally {  
+            if(connection != null){  
+                connection.close();  
+            }  
+        }  
+    }  
+}
+```
+
+
+
+结果： 两个消费者都收到了消息
+
+
 ### 路由模式
+
+> 特点
+- 交换机根据消息的路由key     将消息转发到    与交换机绑定的队列的路由key相同的队列，从而转发给不同的消费者
+- 使用direct交换机
+
+>代码
+
+- 在生产时给消息加上路由key
+	`channel.basicPublish("direct","xxx",null,"hello world".getBytes());`
+	路由key 为xxx
+
+- 在交换机与队列绑定时增加路由key
+- 交换机设定为direct类型
+	`channel.exchangeDeclare("direct", "direct");`  
+	设定交换机为direct
+	`channel.queueDeclare("queue1", false, false, false, null); `   
+	`channel.queueBind("queue1", "direct", "xxx");`
+	consumer设定路由key为xxx
+	`channel.queueBind("queue2", "direct", "aaa");`
+	consumer2设定路由key为aaa
+这样只有consumer1 能收到消息
+其他代码不变
+
+
+- 生产者
+```java
+package com.cheems.routing;  
+  
+import com.rabbitmq.client.Channel;  
+import com.rabbitmq.client.Connection;  
+import com.rabbitmq.client.ConnectionFactory;  
+  
+import java.io.IOException;  
+import java.util.concurrent.TimeoutException;  
+  
+public class Producer {  
+    public static void main(String[] args) throws IOException {  
+        ConnectionFactory factory = new ConnectionFactory();  
+        factory.setHost("localhost");  
+        factory.setPort(5672);  
+        factory.setUsername("guest");  
+        factory.setPassword("guest");  
+        factory.setVirtualHost("/");  
+  
+        Connection connection = null;  
+        try{  
+            connection = factory.newConnection();  
+  
+            Channel channel = connection.createChannel();  
+  
+            // 创建交换机,创建队列， 将交换机与队列绑定  
+  
+            //生产者的队列设为空  
+            channel.basicPublish("direct","xxx",null,"hello world".getBytes());  
+  
+        } catch (IOException e) {  
+            throw new RuntimeException(e);  
+        } catch (TimeoutException e) {  
+            throw new RuntimeException(e);  
+        }finally {  
+            if(connection != null){  
+                connection.close();  
+            }  
+        }  
+    }  
+}
+```
+- 消费者1/2
+```java
+
+public class Consumer {  
+  
+    public static void main(String[] args) throws IOException {  
+  
+        ConnectionFactory factory = new ConnectionFactory();  
+        factory.setHost("localhost");  
+        factory.setPort(5672);  
+        factory.setVirtualHost("/");  
+        factory.setUsername("guest");  
+        factory.setPassword("guest");  
+  
+        Connection connection = null;  
+        try{  
+            connection = factory.newConnection();  
+  
+            Channel channel = connection.createChannel();  
+  
+            channel.exchangeDeclare("direct", "direct");  
+  
+            channel.queueDeclare("queue1", false, false, false, null);  
+  
+            channel.queueBind("queue1", "direct", "xxx");  
+  
+  
+            DeliverCallback deliverCallback = (consumerTag, delivery) -> {  
+                String message = new String(delivery.getBody(), "UTF-8");  
+                System.out.println("1号Received: " + message);  
+            };  
+  
+  
+            channel.basicConsume("queue1",true,deliverCallback,consumerTag -> {  
+                System.out.println("失败");  
+            });  
+  
+            System.in.read();  
+  
+  
+  
+        } catch (IOException e) {  
+            throw new RuntimeException(e);  
+        } catch (TimeoutException e) {  
+            throw new RuntimeException(e);  
+        }finally {  
+            if(connection != null){  
+                connection.close();  
+            }  
+        }  
+    }  
+}
+```
+
+>结果：
+
+只有1收到了
+
+
 
 
 ### 主题模式
 
+>特点
+- 增加了模糊路由key的机制，让路由key可以使用 # . \* 三种符号匹配
+- 使用topic 交换机
 
+\# : 0,1,多个
+\ * ：匹配一个
+. ： 代表分隔
+
+
+> 代码
+
+1. 在消息生产时将路由key 修改为携带三种符号的
+	`channel.basicPublish("topic","com.xxx.111",null,"hello world".getBytes());`
+2. 将交换机修改为direct
+3. 绑定时将路由key 修改为携带三种符号的
+		`channel.exchangeDeclare("topic", "topic");  `
+	  `channel.queueDeclare("queue1", false, false, false, null); ` 
+	  `channel.queueBind("queue1", "topic", "*.111");`
+	
+		channel.queueBind("queue2", "topic", "#.111");
+		
+
+只有第二个可以匹配到了
+
+- 生产者
+```java
+public class Producer {  
+    public static void main(String[] args) throws IOException {  
+        ConnectionFactory factory = new ConnectionFactory();  
+        factory.setHost("localhost");  
+        factory.setPort(5672);  
+        factory.setUsername("guest");  
+        factory.setPassword("guest");  
+        factory.setVirtualHost("/");  
+  
+        Connection connection = null;  
+        try{  
+            connection = factory.newConnection();  
+  
+            Channel channel = connection.createChannel();  
+  
+            // 创建交换机,创建队列， 将交换机与队列绑定  
+  
+  
+  
+            //生产者的队列设为空  
+            channel.basicPublish("topic","xxx.111",null,"hello world".getBytes());  
+  
+        } catch (IOException e) {  
+            throw new RuntimeException(e);  
+        } catch (TimeoutException e) {  
+            throw new RuntimeException(e);  
+        }finally {  
+            if(connection != null){  
+                connection.close();  
+            }  
+        }  
+    }  
+}
+```
+- 消费者
+```java
+public class Consumer {  
+  
+    public static void main(String[] args) throws IOException {  
+  
+        ConnectionFactory factory = new ConnectionFactory();  
+        factory.setHost("localhost");  
+        factory.setPort(5672);  
+        factory.setVirtualHost("/");  
+        factory.setUsername("guest");  
+        factory.setPassword("guest");  
+  
+        Connection connection = null;  
+        try{  
+            connection = factory.newConnection();  
+  
+            Channel channel = connection.createChannel();  
+  
+            channel.exchangeDeclare("topic", "topic");  
+  
+            channel.queueDeclare("queue1", false, false, false, null);  
+  
+            channel.queueBind("queue1", "topic", "*.111");  
+  
+  
+            DeliverCallback deliverCallback = (consumerTag, delivery) -> {  
+                String message = new String(delivery.getBody(), "UTF-8");  
+                System.out.println("1号Received: " + message);  
+            };  
+  
+  
+            channel.basicConsume("queue1",true,deliverCallback,consumerTag -> {  
+                System.out.println("失败");  
+            });  
+  
+            System.in.read();  
+  
+  
+  
+        } catch (IOException e) {  
+            throw new RuntimeException(e);  
+        } catch (TimeoutException e) {  
+            throw new RuntimeException(e);  
+        }finally {  
+            if(connection != null){  
+                connection.close();  
+            }  
+        }  
+    }  
+}
+```
+
+
+> 结果
+
+都匹配都可以收到
+一方匹配，一方收到
 
 ### 模式总结
 可以发现
