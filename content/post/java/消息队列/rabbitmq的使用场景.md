@@ -6,7 +6,7 @@ categories:
   - 技术学习笔记
 series:
   - 消息队列
-series_weight: 5
+series_weight: 100
 ---
 
 {{< series >}}
