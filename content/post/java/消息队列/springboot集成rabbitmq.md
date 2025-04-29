@@ -1,7 +1,7 @@
 ---
 title: Springboot集成rabbitmq
 date: 2025-04-28T20:46:40+08:00
-draft: true
+draft: false
 categories:
   - 技术学习笔记
 series:
