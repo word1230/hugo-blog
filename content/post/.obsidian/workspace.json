@@ -88,8 +88,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "fc7679ab411eedd5",
@@ -198,15 +197,16 @@
   },
   "active": "186c67fb2781b01c",
   "lastOpenFiles": [
-    "java/消息队列/Rabbitmq消息传播模式.md",
     "java/消息队列/rabbitmq高可用-集群.md",
+    "java/消息队列/springboot集成rabbitmq.md",
+    "读书笔记/原子习惯.md",
+    "java/消息队列/Rabbitmq消息传播模式.md",
     "java/消息队列/分布式事务.md",
     "java/消息队列/什么是中间件.md",
     "java/消息队列/消息中间件.md",
     "java/消息队列/消息确认机制与消息持久化.md",
     "java/消息队列/Rabbitmq入门.md",
     "java/消息队列/rabbitmq的使用场景.md",
-    "java/消息队列/springboot集成rabbitmq.md",
     "未命名.md",
     "java/消息队列/rabbitmq队列类型.md",
     "java/cicd/git构建本地CI流程.md",
@@ -215,7 +215,6 @@
     "java/cicd/CI从代码规范工具开始.md",
     "java/项目/云图库/智能协同云图库.md",
     "java/项目/云图库/图片模块.md",
-    "读书笔记/原子习惯.md",
     "课程/编译原理/概述.md",
     "建站/hugo使用",
     "建站",
