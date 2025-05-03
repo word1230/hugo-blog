@@ -197,11 +197,11 @@
   },
   "active": "186c67fb2781b01c",
   "lastOpenFiles": [
+    "java/消息队列/分布式事务.md",
+    "读书笔记/原子习惯.md",
     "java/消息队列/rabbitmq高可用-集群.md",
     "java/消息队列/springboot集成rabbitmq.md",
-    "读书笔记/原子习惯.md",
     "java/消息队列/Rabbitmq消息传播模式.md",
-    "java/消息队列/分布式事务.md",
     "java/消息队列/什么是中间件.md",
     "java/消息队列/消息中间件.md",
     "java/消息队列/消息确认机制与消息持久化.md",
