@@ -15,7 +15,7 @@
               "state": {
                 "file": "读书笔记/原子习惯.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "原子习惯"
