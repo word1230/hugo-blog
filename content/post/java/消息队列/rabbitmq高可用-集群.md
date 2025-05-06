@@ -1,7 +1,7 @@
 ---
 title: Rabbitmq高可用-集群
 date: 2025-04-29T20:36:34+08:00
-draft: true
+draft: false
 categories:
   - 技术学习笔记
 series:
