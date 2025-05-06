@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "java/项目/云图库/智能协同云图库-用户模块.md",
+                "file": "java/面经/鲁担数科一面.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "智能协同云图库-用户模块"
+              "title": "鲁担数科一面"
             }
           }
         ]
@@ -151,13 +151,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "java/项目/云图库/智能协同云图库-用户模块.md",
+                "file": "java/面经/鲁担数科一面.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "智能协同云图库-用户模块 的大纲"
+              "title": "鲁担数科一面 的大纲"
             }
           },
           {
@@ -197,22 +197,24 @@
   },
   "active": "186c67fb2781b01c",
   "lastOpenFiles": [
-    "java/项目/云图库/用户传图模块.md",
-    "java/项目/云图库/图片模块.md",
     "java/消息队列/消息中间件.md",
+    "java/面经/鲁担数科一面.md",
+    "未命名.md",
+    "java/面经",
+    "java/项目/云图库/用户传图模块.md",
+    "java/项目/云图库/智能协同云图库-用户模块.md",
+    "java/项目/云图库/图片模块.md",
     "java/消息队列/消息确认机制与消息持久化.md",
     "java/消息队列/rabbitmq高可用-集群.md",
     "java/消息队列/Rabbitmq消息传播模式.md",
     "java/消息队列/springboot集成rabbitmq.md",
     "java/elastic search/elasticsearch入门.md",
     "学习规划.md",
-    "java/项目/云图库/智能协同云图库-用户模块.md",
     "java/elastic search/全文检索.md",
     "java/消息队列/Rabbitmq入门.md",
     "java/消息队列/rabbitmq的使用场景.md",
     "java/消息队列/什么是中间件.md",
     "java/消息队列/分布式事务.md",
-    "未命名.md",
     "java/elastic search",
     "java/算法/算法 - 链表.md",
     "java/算法/算法-排序.md",
@@ -229,9 +231,7 @@
     "课程/编译原理",
     "读书笔记/原子习惯",
     "课程",
-    "test.md",
     "java/项目/云图库",
-    "java/项目",
-    "java/消息队列"
+    "java/项目"
   ]
 }
