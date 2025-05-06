@@ -84,7 +84,8 @@
               "title": "Source Control"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -195,7 +196,7 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "186c67fb2781b01c",
+  "active": "d30cdb367009d373",
   "lastOpenFiles": [
     "java/算法/算法 - 链表.md",
     "java/算法/算法-排序.md",
