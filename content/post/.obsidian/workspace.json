@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "读书笔记/原子习惯.md",
+                "file": "java/算法/算法-排序.md",
                 "mode": "source",
-                "source": true
+                "source": false
               },
               "icon": "lucide-file",
-              "title": "原子习惯"
+              "title": "算法-排序"
             }
           }
         ]
@@ -151,13 +151,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "读书笔记/原子习惯.md",
+                "file": "java/算法/算法-排序.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "原子习惯 的大纲"
+              "title": "算法-排序 的大纲"
             }
           },
           {
@@ -197,8 +197,11 @@
   },
   "active": "186c67fb2781b01c",
   "lastOpenFiles": [
-    "java/消息队列/分布式事务.md",
+    "java/算法/算法 - 链表.md",
+    "java/算法/算法-排序.md",
     "读书笔记/原子习惯.md",
+    "java/算法",
+    "java/消息队列/分布式事务.md",
     "java/消息队列/rabbitmq高可用-集群.md",
     "java/消息队列/springboot集成rabbitmq.md",
     "java/消息队列/Rabbitmq消息传播模式.md",
@@ -227,11 +230,8 @@
     "java/项目",
     "java/消息队列",
     "java/cicd",
-    "java",
     "123.md",
     "12.md",
-    "xxsdadw.md",
-    "读书笔记/123.md",
-    "读书笔记/h.md"
+    "xxsdadw.md"
   ]
 }
